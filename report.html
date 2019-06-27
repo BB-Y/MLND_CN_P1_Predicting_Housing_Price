@@ -14053,6 +14053,7 @@ missing_category: [&#39;Alley&#39;, &#39;MasVnrType&#39;, &#39;BsmtQual&#39;, &#
 <span class="c1"># 需要填充中位数的特征</span>
 <span class="n">fill_median</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LotFrontage&#39;</span><span class="p">,</span> <span class="s1">&#39;MasVnrArea&#39;</span><span class="p">]</span>
 <span class="c1"># 3.4.1 TODO：按需填补上面数据</span>
+<span class="n">data_df</span><span class="p">[</span><span class="n">fill_Mode</span><span class="p">]</span><span class="o">=</span><span class="n">data_df</span><span class="p">[</span><span class="n">fill_Mode</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data_df</span><span class="p">[</span><span class="n">fill_Mode</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">())</span>
 <span class="n">data_df</span><span class="p">[</span><span class="n">fill_0</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span> <span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">mean</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="n">fill_median</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fill_median</span><span class="p">:</span>
@@ -14679,7 +14680,8 @@ max_depth=10时，随着训练数据量的增加，训练集和验证集得分�
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>问题 10 - 回答: 在选择模型时，多个超参数会组合出多个模型，为了选取最佳组合，列出所有可能组合并训练模型，然后选择评分最高的模型。
+<p>问题 10 - 回答: 网格搜索是寻求最优参数的一种方法。
+在选择模型时，多个超参数会组合出多个模型，为了选取最佳组合，列出所有可能组合并训练模型，然后选择评分最高的模型。
 例如，优化决策树模型时，使用max_depth、min_samples_leaf、min_samples_split三个超参数配置模型，每个参数取值[2,4,6,8,10]，则有125种可能得情况，从中选出得分最高的模型。</p>
 
 </div>
@@ -14879,7 +14881,13 @@ GridSearchCV 中的'cv<em>results</em>'属性列出了每种参数组合的得�
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>回答问题12.2：此模型较好的预测了房价。增加训练集减少测试集，增加 KFold 中子集数量有助于提升分数</p>
+<p>回答问题12.2：此模型较好的预测了房价。
+如何改进：
+1.数据预处理时，检查异常值，已经调整处理空值的方式
+2.使用不同的算法建立模型
+3.调整算法的超参数个数和取值范围
+4.选取不同的评分函数去评价模型
+5.增加训练集减少测试集，增加 KFold 中子集数量</p>
 
 </div>
 </div>
